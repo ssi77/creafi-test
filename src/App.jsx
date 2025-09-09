@@ -12,27 +12,30 @@ import React, { useState, useEffect } from 'react'
       const customSelectStyles = {
         control: (provided) => ({
           ...provided,
-          borderRadius: '12px',
+          borderRadius: '15px',
           border: '1px solid #e9ecef',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+          boxShadow: '0 3px 6px rgba(0, 0, 0, 0.05)',
           '&:hover': {
-            borderColor: '#5f27cd'
+            borderColor: '#6a11cb'
           }
         }),
         option: (provided, state) => ({
           ...provided,
           backgroundColor: state.isSelected 
-            ? '#5f27cd' 
+            ? '#6a11cb' 
             : state.isFocused 
               ? '#f1f3f5' 
               : 'white',
-          color: state.isSelected ? 'white' : 'inherit'
+          color: state.isSelected ? 'white' : 'inherit',
+          ':active': {
+            backgroundColor: '#6a11cb',
+            color: 'white'
+          }
         }),
         menu: (provided) => ({
           ...provided,
-          borderRadius: '12px',
-          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
-          zIndex: 9999
+          borderRadius: '15px',
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
         })
       }
 
