@@ -8,34 +8,6 @@ import React, { useState, useEffect } from 'react'
       const [recordedTimes, setRecordedTimes] = useState([])
       const [selectedTimezone, setSelectedTimezone] = useState(null)
 
-      // Custom Select styles
-      const customSelectStyles = {
-        control: (provided) => ({
-          ...provided,
-          borderRadius: '12px',
-          border: '1px solid #e9ecef',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-          '&:hover': {
-            borderColor: '#5f27cd'
-          }
-        }),
-        option: (provided, state) => ({
-          ...provided,
-          backgroundColor: state.isSelected 
-            ? '#5f27cd' 
-            : state.isFocused 
-              ? '#f1f3f5' 
-              : 'white',
-          color: state.isSelected ? 'white' : 'inherit'
-        }),
-        menu: (provided) => ({
-          ...provided,
-          borderRadius: '12px',
-          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
-          zIndex: 9999
-        })
-      }
-
       // Generate timezone options
       const timezoneOptions = moment.tz.names().map(tz => ({
         value: tz,
@@ -75,14 +47,24 @@ import React, { useState, useEffect } from 'react'
           ms.toString().padStart(3, '0')}`
       }
 
-      // Handlers
-      const handleStart = () => setIsRunning(true)
-      const handlePause = () => setIsRunning(false)
+      // Start stopwatch
+      const handleStart = () => {
+        setIsRunning(true)
+      }
+
+      // Pause stopwatch
+      const handlePause = () => {
+        setIsRunning(false)
+      }
+
+      // Reset stopwatch
       const handleReset = () => {
         setTime(0)
         setIsRunning(false)
         setRecordedTimes([])
       }
+
+      // Record time
       const handleRecord = () => {
         const formattedTime = formatTime(time)
         const timezoneTime = moment().tz(selectedTimezone.value).format('YYYY-MM-DD HH:mm:ss z')
@@ -97,7 +79,6 @@ import React, { useState, useEffect } from 'react'
               onChange={setSelectedTimezone}
               options={timezoneOptions}
               placeholder="Select Timezone"
-              styles={customSelectStyles}
             />
           </div>
 
