@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-  const API_BASE_URL = 'http://localhost:8000/api'
+  // Usa l'URL di Render in produzione, localhost in sviluppo
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
   // Chiamata 1: Crea sessione di pagamento Stripe
   export const createCheckoutSession = async (items) => {
